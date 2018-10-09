@@ -15,7 +15,7 @@
   }
   
   function MoveCheck(data){
-    if( confirm("削除してもいいですか?")){
+    if( confirm("撤去しますか?")){
       google.script.run.withSuccessHandler(onSuccess).selects(data);
     }else{
       alert("キャンセルしました");
@@ -50,26 +50,28 @@
 </script>  
 
 <div id="html">
-<h2>データ一覧</h2>
+<h2>輪講の墓場</h2>
 <form>
-  <p><input type="button" value="データ追加" onclick="google.script.run.withSuccessHandler(transitionPage).getPageHtml('insert')"></p>
-  <p><input type="button" value="データ検索" onclick="google.script.run.withSuccessHandler(transitionPage).getPageHtml('search')"></p>
+<? var datas = select(); ?>
+  <p><input type="button" value="墓標を建てる" onclick="google.script.run.withSuccessHandler(transitionPage).getPageHtml('insert')"></p>
+  <!--<p><input type="button" value="データ検索" onclick="google.script.run.withSuccessHandler(transitionPage).getPageHtml('search')"></p>-->
  <!-- <p><a href="https://script.google.com/a/edu.teu.ac.jp/macros/s/AKfycbyyNNh4vDw1VeVo37H0G9c1HCg7bfBTC7KkFOj0Oa0/dev">menu</a></p>-->
+ ここには<?= datas.length ?>件の墓標がある．被らないように注意する事
 <table border=1>
 <tr>
 <th>墓碑銘</th>
-<th>月日</th>
+<th>年月日</th>
 <th>供養人</th>
 <th>生前の様子</th>
 <th>死因</th>
-<th>削除ボタン</th>
+<th>墓標撤去</th>
 </tr>
 
 <?
-  var datas = select();
+  
   var array;
   var len = datas.length;
-  //Logger.log(datas[0][0]);
+  Logger.log(Math.floor(datas.length));
   for(var i = datas.length; i >= 0.0; i--){
 //  　Logger.log(datas[i][0]);
     
@@ -86,7 +88,7 @@
     output.append('<td>' + datas[data][2] + '</td>');
     output.append('<td>' + datas[data][3] + '</td>');
     output.append('<td>' + datas[data][4] + '</td>');
-    output.append('<td> <input type="button" value="削除" onclick="MoveCheck(' + "'" + datas[data][0] + "'" + ')"> </td></tr>');
+    output.append('<td> <input type="button" value="撤去" onclick="MoveCheck(' + "'" + datas[data][0] + "'" + ')"> </td></tr>');
   }
 ?>
 

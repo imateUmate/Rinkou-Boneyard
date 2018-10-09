@@ -24,7 +24,7 @@ function selects(data){
    var result  = FusionTables.Query.sql(query);
    query = "DELETE FROM " + tableId + " WHERE ROWID = '" + result.rows[0][0] + "'";
    FusionTables.Query.sql(query);
- return "削除しました";
+ return "撤去完了";
 }
 
 function search_ready(form){
@@ -62,7 +62,7 @@ function Insert(form){
   
   var sql = "INSERT INTO " + tableId + " ('Name','Month','Man','Live','Death')" + " VALUES ('" + name + "','" + month + "','" + man + "','" + life + "','" + dead + "')";
   var res = FusionTables.Query.sql(sql);
-  return '墓標を追加しました';
+  return '墓標追加完了';
 }
 
 function getData(){

@@ -9,6 +9,11 @@
     google.script.run.withSuccessHandler(transitionPage).getPageHtml('select');
   }
   
+  function onSuccess_live(message){
+    alert(message);
+    google.script.run.withSuccessHandler(transitionPage).getPageHtml('live');
+  }
+  
   function onSuccess2(message){
     alert(message);
     google.script.run.withSuccessHandler(transitionPage).getPageHtml('insert');
@@ -17,6 +22,14 @@
   function MoveCheck(data){
     if( confirm("撤去しますか?")){
       google.script.run.withSuccessHandler(onSuccess).selects(data);
+    }else{
+      alert("キャンセルしました");
+    }
+  }
+  
+  function LiveCheck(data){
+    if( confirm("撤去しますか?")){
+      google.script.run.withSuccessHandler(onSuccess_live).selects(data);
     }else{
       alert("キャンセルしました");
     }
@@ -54,9 +67,11 @@
 <form>
 <? var datas = select(); ?>
   <p><input type="button" value="墓標を建てる" onclick="google.script.run.withSuccessHandler(transitionPage).getPageHtml('insert')"></p>
+  <p><input type="button" value="生還した論文を見る" onclick="google.script.run.withSuccessHandler(transitionPage).getPageHtml('live')"></p>
+  <p><input type="button" value="生還報告" onclick="google.script.run.withSuccessHandler(transitionPage).getPageHtml('insert_live')"></p>
   <!--<p><input type="button" value="データ検索" onclick="google.script.run.withSuccessHandler(transitionPage).getPageHtml('search')"></p>-->
  <!-- <p><a href="https://script.google.com/a/edu.teu.ac.jp/macros/s/AKfycbyyNNh4vDw1VeVo37H0G9c1HCg7bfBTC7KkFOj0Oa0/dev">menu</a></p>-->
- ここには<?= datas.length ?>件の墓標がある．被らないように注意する事
+ ここにある墓標は全部で<?= datas.length ?>個だ．被らないように注意
 <table border=1>
 <tr>
 <th>墓碑銘</th>

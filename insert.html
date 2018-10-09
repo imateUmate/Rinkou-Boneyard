@@ -9,11 +9,13 @@ function onSuccess(data) {
 <form>
   <p>
   <!--<input type="button" value="データ追加" onclick="google.script.run.withSuccessHandler(onSuccess2).Insert(this.form);">-->
-  <input type="button" value="墓一覧を見る" onclick="google.script.run.withSuccessHandler(transitionPage).getPageHtml('select')"></p>
+  <input type="button" value="墓一覧を見る" onclick="google.script.run.withSuccessHandler(transitionPage).getPageHtml('select')">
+   <input type="button" value="生還者一覧を見る" onclick="google.script.run.withSuccessHandler(transitionPage).getPageHtml('live')">
+    <input type="button" value="生還報告する" onclick="google.script.run.withSuccessHandler(transitionPage).getPageHtml('insert_live')"></p>
   <table border=1>
     <tr>
       <th>墓碑銘</th>
-      <th>年月日(例:4月1日)</th>
+      <th>年月日(例:2018年4月1日)</th>
       <th>供養人</th>
       <th>生前の様子</th>
       <th>死因</th>

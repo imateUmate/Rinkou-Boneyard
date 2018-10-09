@@ -1,0 +1,31 @@
+<script>
+function onSuccess(data) {
+  alert(data);
+}
+</script>
+
+<div id="html">
+<h2>生還報告</h2>
+<form>
+  <p>
+  <!--<input type="button" value="データ追加" onclick="google.script.run.withSuccessHandler(onSuccess2).Insert(this.form);">-->
+  <input type="button" value="墓を見る" onclick="google.script.run.withSuccessHandler(transitionPage).getPageHtml('select')">
+   <input type="button" value="墓標を建てる" onclick="google.script.run.withSuccessHandler(transitionPage).getPageHtml('insert')">
+    <input type="button" value="生還者一覧を見る" onclick="google.script.run.withSuccessHandler(transitionPage).getPageHtml('live')"></p>
+  <table border=1>
+    <tr>
+      <th>生還論文名</th>
+      <th>生還者</th>
+    </tr>
+    <tr>
+      <td><input type="text" name="name"></td>
+      <td><input type="text" name="man"></td>
+    </tr>
+  </table>
+  <table border = 0>
+  <tr>
+  <td><input type="button" style="position:absolute;left:285px"value="生還報告" onclick="google.script.run.withSuccessHandler(onSuccess_live).Insert_live(this.form);"></td>
+  </tr>
+  </table>
+</form>
+</div>

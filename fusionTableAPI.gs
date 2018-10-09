@@ -12,7 +12,15 @@ function doGet() {
 
 function select(){
   var tableId = '1l1TuBA17FR8HBMOUyJQISngEHgJgscDXQdupZ-D3';
-  var sql = 'SELECT * FROM ' + tableId;
+  var sql = 'SELECT * FROM ' + tableId + " WHERE Status = '';";
+  //var sql = 'SELECT ROWID,Name,Month,Man,Live,Death FROM ' + tableId;
+  var res = FusionTables.Query.sql(sql);
+  return res.rows;
+}
+
+function select_live(){
+  var tableId = '1l1TuBA17FR8HBMOUyJQISngEHgJgscDXQdupZ-D3';
+  var sql = 'SELECT * FROM ' + tableId + " WHERE Status = 'LIVE';";
   //var sql = 'SELECT ROWID,Name,Month,Man,Live,Death FROM ' + tableId;
   var res = FusionTables.Query.sql(sql);
   return res.rows;
@@ -64,6 +72,17 @@ function Insert(form){
   var res = FusionTables.Query.sql(sql);
   return '墓標追加完了';
 }
+
+function Insert_live(form){
+  var tableId = '1l1TuBA17FR8HBMOUyJQISngEHgJgscDXQdupZ-D3';  
+  var name = form.name;
+  var man = form.man;
+  //return '報告完了';
+  var sql = "INSERT INTO " + tableId + " ('Name','Man','Status')" + " VALUES ('" + name + "','" + man + "','LIVE')";
+  var res = FusionTables.Query.sql(sql);
+  return "報告完了";
+}
+
 
 function getData(){
   return "<h2>OK</h2>";

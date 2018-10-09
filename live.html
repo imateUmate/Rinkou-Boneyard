@@ -1,0 +1,42 @@
+<div id="html">
+<h2>生還者</h2>
+<form>
+<? var datas = select_live(); ?>
+  <p><input type="button" value="墓場に戻る" onclick="google.script.run.withSuccessHandler(transitionPage).getPageHtml('select')"></p>
+  <p><input type="button" value="生還報告する" onclick="google.script.run.withSuccessHandler(transitionPage).getPageHtml('insert_live')"></p>
+  <p><input type="button" value="墓標を建てる" onclick="google.script.run.withSuccessHandler(transitionPage).getPageHtml('insert')"></p>
+  <!--<p><input type="button" value="データ検索" onclick="google.script.run.withSuccessHandler(transitionPage).getPageHtml('search')"></p>-->
+ <!-- <p><a href="https://script.google.com/a/edu.teu.ac.jp/macros/s/AKfycbyyNNh4vDw1VeVo37H0G9c1HCg7bfBTC7KkFOj0Oa0/dev">menu</a></p>-->
+ 今まで生還した論文は<?= datas.length ?>件だ．こことも被らないように注意
+<table border=1>
+<tr>
+<th>生還論文</th>
+<th>生還者</th>
+<th>報告撤回</th>
+</tr>
+
+<?
+  
+  var array;
+  var len = datas.length;
+  Logger.log(Math.floor(datas.length));
+  for(var i = datas.length; i >= 0.0; i--){
+//  　Logger.log(datas[i][0]);
+    
+　　//i = Math.floor(i);
+   
+    //Logger.log(Math.floor(5.5));
+  }
+    //Logger.log(datas.reverse())
+  
+  datas.reverse();
+  for(var data in datas){
+    output.append('<tr><td>' + datas[data][0] + '</td>');
+    output.append('<td>' + datas[data][2] + '</td>');
+    output.append('<td> <input type="button" value="撤回" onclick="LiveCheck(' + "'" + datas[data][0] + "'" + ')"> </td></tr>');
+  }
+?>
+
+</table>
+</form>
+</div>

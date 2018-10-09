@@ -1,0 +1,95 @@
+<script>
+  function transitionPage(resultHtml) {
+    var outputDiv = document.getElementById('html');
+    outputDiv.innerHTML = resultHtml;
+  }
+
+  function onSuccess(message){
+    alert(message);
+    google.script.run.withSuccessHandler(transitionPage).getPageHtml('select');
+  }
+  
+  function onSuccess2(message){
+    alert(message);
+    google.script.run.withSuccessHandler(transitionPage).getPageHtml('insert');
+  }
+  
+  function MoveCheck(data){
+    if( confirm("削除してもいいですか?")){
+      google.script.run.withSuccessHandler(onSuccess).selects(data);
+    }else{
+      alert("キャンセルしました");
+    }
+  }
+  
+  function searchSuccess(data){
+  alert(data);
+  google.script.run.withSuccessHandler(transitionPage).getPageHtml('search');
+  }
+  
+  function reverse(data){
+    var hanten = data.reverse();
+    return hanten;
+  }
+  
+  function test(form){
+  var res = google.script.run.withSuccessHandler(searchSuccess).search(form);
+  //alert(res);
+  //return res;
+  }
+  
+   function getdata(){
+      google.script.run.withSuccessHandler(result).getData();
+      function result(data){
+          alert(data);
+          document.getElementById("TEST").textContent = data;
+      }
+      }
+  
+  
+</script>  
+
+<div id="html">
+<h2>データ一覧</h2>
+<form>
+  <p><input type="button" value="データ追加" onclick="google.script.run.withSuccessHandler(transitionPage).getPageHtml('insert')"></p>
+  <p><input type="button" value="データ検索" onclick="google.script.run.withSuccessHandler(transitionPage).getPageHtml('search')"></p>
+ <!-- <p><a href="https://script.google.com/a/edu.teu.ac.jp/macros/s/AKfycbyyNNh4vDw1VeVo37H0G9c1HCg7bfBTC7KkFOj0Oa0/dev">menu</a></p>-->
+<table border=1>
+<tr>
+<th>墓碑銘</th>
+<th>月日</th>
+<th>供養人</th>
+<th>生前の様子</th>
+<th>死因</th>
+<th>削除ボタン</th>
+</tr>
+
+<?
+  var datas = select();
+  var array;
+  var len = datas.length;
+  //Logger.log(datas[0][0]);
+  for(var i = datas.length; i >= 0.0; i--){
+//  　Logger.log(datas[i][0]);
+    
+　　//i = Math.floor(i);
+   
+    //Logger.log(Math.floor(5.5));
+  }
+    //Logger.log(datas.reverse())
+  
+  datas.reverse();
+  for(var data in datas){
+    output.append('<tr><td>' + datas[data][0] + '</td>');
+    output.append('<td>' + datas[data][1] + '</td>');
+    output.append('<td>' + datas[data][2] + '</td>');
+    output.append('<td>' + datas[data][3] + '</td>');
+    output.append('<td>' + datas[data][4] + '</td>');
+    output.append('<td> <input type="button" value="削除" onclick="MoveCheck(' + "'" + datas[data][0] + "'" + ')"> </td></tr>');
+  }
+?>
+
+</table>
+</form>
+</div>

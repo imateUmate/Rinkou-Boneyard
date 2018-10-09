@@ -1,0 +1,40 @@
+<script>
+function onSuccess(data) {
+  alert(data);
+}
+</script>
+
+<div id="html">
+<h2>データ追加</h2>
+<form>
+  <p>
+  <input type="button" value="データ追加" onclick="google.script.run.withSuccessHandler(onSuccess2).Insert(this.form);">
+  <input type="button" value="データ一覧" onclick="google.script.run.withSuccessHandler(transitionPage).getPageHtml('select')"></p>
+  <table border=1>
+    <tr>
+      <th>墓碑銘</th>
+      <th>月日(例:4月1日)</th>
+      <th>供養人</th>
+      <th>生前の様子</th>
+      <th>死因</th>
+    </tr>
+    <tr>
+      <td><input type="text" name="name"></td>
+      <td><input type="text" name="month"></td>
+      <td><input type="text" name="man"></td>
+      <td><input type="text" name="life"></td>
+      <td><input type="text" name="dead"></td>
+    </tr>
+  </table>
+  <table border = 0>
+  <tr>
+  <td> </td>
+  <td> </td>
+  <td> </td>
+  <td> </td>
+  <td> </td>
+  <td><input type="button" value="データ追加" onclick="google.script.run.withSuccessHandler(onSuccess2).Insert(this.form);"></td>
+  </tr>
+  </table>
+</form>
+</div>

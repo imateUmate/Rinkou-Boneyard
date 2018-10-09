@@ -1,0 +1,48 @@
+<script type="text/javascript">
+  function searchCheck(data){
+  //google.script.run.withSuccessHanler(searchSuccess).search(this.form);
+  alert(data);
+  }
+  
+ 
+</script>
+
+<div id="html">
+<h2>データ検索(出来ません)</h2>
+<form>
+  <p>
+  <!--><input type="button" value="検索" onclick="foo();"><-->
+  <!--<input type="button" value="検索" onclick="google.script.run.withSuccessHandler(searchSuccess).search(this.form);">-->
+  <input type="button" value="検索" onclick="test(this.form)">
+  <input type="button" value="データ一覧" onclick="google.script.run.withSuccessHandler(transitionPage).getPageHtml('select')"></p>
+  <table border=1>
+    <tr>
+      <th>墓碑銘</th>
+      <th>月日(例:4月1日)</th>
+      <th>供養人</th>
+      <th>生前の様子</th>
+      <th>死因</th>
+    </tr>
+    <tr>
+      <td><input type="text" name="name"></td>
+      <td><input type="text" name="month"></td>
+      <td><input type="text" name="man"></td>
+      <td><input type="text" name="life"></td>
+      <td><input type="text" name="dead"></td>
+    </tr>
+    <?
+  var datas = select();
+  for(var data in datas){
+    output.append('<tr><td>' + datas[data][0] + '</td>');
+    output.append('<td>' + datas[data][1] + '</td>');
+    output.append('<td>' + datas[data][2] + '</td>');
+    output.append('<td>' + datas[data][3] + '</td>');
+    output.append('<td>' + datas[data][4] + '</td></tr>');
+  }
+?>
+<tr>
+<td><div id="TEST"></div><button onclick="google.script.run.withSuccessHandler(getdata).getData()">TEST</button></td>
+</tr>
+  </table>
+</form>
+</div>
